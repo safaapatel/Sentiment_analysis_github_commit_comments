@@ -1,0 +1,206 @@
+preprocess.py for commit_comments without anything on fs.das3:
+
+real    1:52.26
+user    68.51
+sys     1.53
+mem     67264/4 kB
+
+preprocess.py for commit_comments already downloaded on fs.das3:
+real    1:10.07
+user    67.52
+sys     1.04
+mem     67280/4 kB
+(Note how there is almost no decrease in user+system time.)
+
+preprocess.py for repos without anything on fs.das3:
+real    20:58:15
+user    29477.91
+sys     884.04
+mem     1458128/4 kB
+
+preprocess.py for commit_comments and language group (after repos) without any downloaded files or parallelization on fs.das3:
+real    1:09:50
+user    910.36
+sys     26.16
+mem     765696/4 kB
+
+analyze.py for plain commit_comments without anything and ignored output on fs.das3:
+real    1:03.30
+user    63.04
+sys     0.25
+mem     30592/4 kB
+
+analyze.py (score group) for plain commit_comments without anything:
+real    0:52.04
+user    51.78
+sys     0.23
+mem     30976/4 kB
+
+classify.py for plain commit_comments without anything and ignored output (id group) on fs.das3:
+real    1:06.96
+user    62.51
+sys     0.93
+mem     1155680/4 kB
+
+classify.py for plain commit_comments (score group) through sort and reducer:
+total real       1:02.43
+classify.py user 61.24
+classify.py sys  1.50
+classify.py mem  815136/4 kB
+sort user        0.49
+sort sys         0.49
+sort mem         38320/4 kB
+reducer.py user  0.18
+reducer.py sys   0.01
+reducer.py mem   16224/4 kB
+We should probably just give the sum of this in order to compare with MapReduce.
+
+
+preprocess.py for repos without anything on node02:
+real    51:59:38
+user    27873.34
+sys     1393.81
+mem     1452400/4 kB
+
+
+MapReduce analyze.py (score group) + reducer.py
+Total time spent by all maps in occupied slots (ms)=81087
+Total time spent by all reduces in occupied slots (ms)=6963
+Total time spent by all map tasks (ms)=81087
+Total time spent by all reduce tasks (ms)=6963
+Total vcore-seconds taken by all map tasks=81087
+Total vcore-seconds taken by all reduce tasks=6963
+Total megabyte-seconds taken by all map tasks=55301334
+Total megabyte-seconds taken by all reduce tasks=4748766
+GC time elapsed (ms)=1029
+CPU time spent (ms)=70240
+Physical memory (bytes) snapshot=1085562880
+Virtual memory (bytes) snapshot=7439216640
+Total committed heap usage (bytes)=851443712
+real    1:08.76
+user    12.57
+sys     0.64
+mem     591248/4 kB
+
+
+MapReduce classify.py for plain commit_comments (score group) and reducer.py:
+Total time spent by all maps in occupied slots (ms)=115006
+Total time spent by all reduces in occupied slots (ms)=28171
+Total time spent by all map tasks (ms)=115006
+Total time spent by all reduce tasks (ms)=28171
+Total vcore-seconds taken by all map tasks=115006
+Total vcore-seconds taken by all reduce tasks=28171
+Total megabyte-seconds taken by all map tasks=78434092
+Total megabyte-seconds taken by all reduce tasks=19212622
+GC time elapsed (ms)=1102
+CPU time spent (ms)=83620
+Physical memory (bytes) snapshot=1084923904
+Virtual memory (bytes) snapshot=7437201408
+Total committed heap usage (bytes)=844627968
+hadoop real    1:46.63
+hadoop user    12.63
+hadoop sys     0.77
+hadoop mem     559840/4 kB
+
+Total time spent by all maps in occupied slots (ms)=86719
+Total time spent by all reduces in occupied slots (ms)=8770
+Total time spent by all map tasks (ms)=86719
+Total time spent by all reduce tasks (ms)=8770
+Total vcore-seconds taken by all map tasks=86719
+Total vcore-seconds taken by all reduce tasks=8770
+Total megabyte-seconds taken by all map tasks=59142358
+Total megabyte-seconds taken by all reduce tasks=5981140
+GC time elapsed (ms)=1108
+CPU time spent (ms)=80110
+Physical memory (bytes) snapshot=1080074240
+Virtual memory (bytes) snapshot=7438934016
+Total committed heap usage (bytes)=844103680
+real    1:44.21
+user    12.43
+sys     0.73
+mem     558288/4 kB
+
+
+MapReduce classify.py for commit_comments with languages group and reducer.py
+Total time spent by all maps in occupied slots (ms)=100490
+Total time spent by all reduces in occupied slots (ms)=9561
+Total time spent by all map tasks (ms)=100490
+Total time spent by all reduce tasks (ms)=9561
+Total vcore-seconds taken by all map tasks=100490
+Total vcore-seconds taken by all reduce tasks=9561
+Total megabyte-seconds taken by all map tasks=68534180
+Total megabyte-seconds taken by all reduce tasks=6520602
+GC time elapsed (ms)=1388
+CPU time spent (ms)=80640
+Physical memory (bytes) snapshot=1082146816
+Virtual memory (bytes) snapshot=7439532032
+Total committed heap usage (bytes)=844627968
+hadoop real    1:23.76
+hadoop user    17.10
+hadoop sys     1.00
+hadoop mem     652000/4 kB
+
+
+analyze.py for language commit_comments:
+real    0:53.62
+user    52.77
+sys     0.21
+mem     30560/4 kB
+
+
+classify.py for language commit_comments:
+total real    1:09/33
+classify user 61.65
+classify sys  1.69
+classify mem  852848/4 kB
+sort user     0.90
+sprt sys      0.47
+sort mem      40784/4 kB
+reducer user  0.20
+reducer sys   0.01
+reducer mem   16224/4 kB
+
+
+MPI preprocess repos with SSH:
+ran from 16:58:55 until 23:55:13, so 6h 56m 18s
+workers user 33007.07
+workers sys  1823.79
+workers mem  1721864 kB
+
+MPI preprocess all commit_comments with language group with SSH:
+mpiexec real 1:06:29
+mpiexec user 844.09
+mpiexec sys  26.76
+mpiexec mem  758592/4 kB
+workers real 31896 (sum of all nodes)
+workers user 3166.15
+workers sys  23132.71
+workers mem  387192 kB
+
+MPI analyze.py for all 17 dumps of language commit_comments with SSH:
+total real    2:19.43
+mpiexec user  0.15
+mpiexec sys   0.09
+mpiexec mem   16624/4 kB
+workers real  312.44 (sum of all nodes), avg=45s
+workers user  250.21
+workers sys   1.10
+workers mem   53196 kB
+
+
+MPI classify.py/sort/reducer.py for all 17 dumps of language commit_comments with SSH:
+total real    1:49.51
+mpiexec user  1.50
+mpiexec sys   0.35
+mpiexec mem   352880/4 kB
+workers real  620.18 (sum of all nodes), avg=1m 18s
+workers user  599.20
+workers sys   9.55
+workers mem   1713280 kB
+sort user     9.74
+sort sys      1.08
+sort mem      204336/4 kB
+reducer user  2.02
+reducer sys   0.06
+reducer mem   16208/4 kB
+
